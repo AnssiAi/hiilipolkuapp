@@ -1,4 +1,11 @@
+# Build Folders
+obj
+bin
+dist
+dist-ssr
+
 # Logs
+Logs
 logs
 *.log
 npm-debug.log*
@@ -6,15 +13,50 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-bin
-obj
 *.local
 
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+.builds
+
+# Dependencies
+node_modules
+packages
+AppPackages/
+
+# Migrations
+Migrations
+
+# Test results
+TestResults/
+
+# Publish web output
+*Publish.xml
+
 # Editor directories and files
+appsettings.json
+appsettings.Development.json
+
 .vscode/*
 !.vscode/extensions.json
 .idea

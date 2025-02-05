@@ -57,6 +57,8 @@ TestResults/
 appsettings.json
 appsettings.Development.json
 
+.config
+.vs/*
 .vscode/*
 !.vscode/extensions.json
 .idea

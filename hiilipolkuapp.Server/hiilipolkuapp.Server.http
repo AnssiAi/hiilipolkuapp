@@ -1,6 +1,6 @@
 @hiilipolkuapp.Server_HostAddress = http://localhost:5191
 
-GET {{hiilipolkuapp.Server_HostAddress}}/hiilipolku/
+GET {{hiilipolkuapp.Server_HostAddress}}/api/health/ping
 Accept: application/json
 
 ###

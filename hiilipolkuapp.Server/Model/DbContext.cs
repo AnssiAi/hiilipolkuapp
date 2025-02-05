@@ -5,15 +5,10 @@ namespace hiilipolkuapp.Server.Model
 {
     public class AppDatabaseContext : DbContext
     {
-        protected readonly IConfiguration Configuration;
 
-        public AppDatabaseContext(IConfiguration configuration)
+        public AppDatabaseContext(DbContextOptions<AppDatabaseContext> options) : base(options)
         {
-            Configuration = configuration;
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseNpgsql(Configuration.GetConnectionString("LocalDatabaseConnection"));
 
         public DbSet<Product> ProductTable { get; set; }
         public DbSet<Production> ProductionTable { get; set; }

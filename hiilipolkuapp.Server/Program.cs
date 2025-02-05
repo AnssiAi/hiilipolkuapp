@@ -1,4 +1,10 @@
 
+using hiilipolkuapp.Server.Model;
+using hiilipolkuapp.Server.Queries;
+using hiilipolkuapp.Server.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 namespace hiilipolkuapp.Server
 {
     public class Program
@@ -7,10 +13,16 @@ namespace hiilipolkuapp.Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //Palveluiden lis‰‰minen
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<AppDatabaseContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration.GetConnectionString("LocalDatabaseConnection"));
+            });
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 

@@ -48,59 +48,5 @@ namespace hiilipolkuapp.Server.Controllers
 
             }
         }
-        [HttpPost]
-        public async Task<ActionResult<Product>> AddProduct(Product product)
-        {
-            try
-            {
-                var dbProduct = await _productService.AddProduct(product);
-
-                return Ok(dbProduct);
-
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-
-            }
-        }
-        [HttpPut]
-        public async Task<ActionResult<Product>> UpdateProduct(Product product)
-        {
-            try
-            {
-                var dbProduct = await _productService.UpdateProduct(product);
-                if (dbProduct is null)
-                {
-                    return BadRequest("product not found");
-                }
-
-
-                return Ok(dbProduct);
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
-        }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<string>> DeleteProductById(int id)
-        {
-            try
-            {
-                await _productService.DeleteProductById(id);
-
-                return Ok("Deleted");
-
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-
-            }
-        }
     }
 }

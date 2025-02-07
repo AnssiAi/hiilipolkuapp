@@ -16,7 +16,7 @@ namespace hiilipolkuapp.Server.Controllers
         }
 
         [HttpGet("product")]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<List<ProductDto>>> GetProducts()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace hiilipolkuapp.Server.Controllers
             }
         }
         [HttpGet("product/{id}")]
-        public async Task<ActionResult<Product>> GetProductById(int id)
+        public async Task<ActionResult<ProductDto>> GetProductById(int id)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace hiilipolkuapp.Server.Controllers
             }
         }
         [HttpPost("product")]
-        public async Task<ActionResult<Product>> AddProduct(Product product)
+        public async Task<ActionResult<ProductDto>> AddProduct(NewProductDto product)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace hiilipolkuapp.Server.Controllers
             }
         }
         [HttpPut("product")]
-        public async Task<ActionResult<Product>> UpdateProduct(Product product)
+        public async Task<ActionResult<ProductDto>> UpdateProduct(ProductDto product)
         {
             try
             {

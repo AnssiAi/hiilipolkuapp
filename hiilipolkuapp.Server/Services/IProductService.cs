@@ -5,11 +5,11 @@ namespace hiilipolkuapp.Server.Services
 {
     public interface IProductService
     {
-        Task<List<Product>> GetAllProducts();
-        Task<Product> GetProductById(int id);
-        Task<Product> AddProduct(Product product);
+        Task<List<ProductDto>> GetAllProducts();
+        Task<ProductDto> GetProductById(int id);
+        Task<ProductDto> AddProduct(NewProductDto product);
         Task DeleteProductById(int id);
-        Task<Product> UpdateProduct(Product product);
+        Task<ProductDto> UpdateProduct(ProductDto product);
 
     }
 }

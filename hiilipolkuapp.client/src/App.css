@@ -1,4 +1,10 @@
-﻿#root {
+﻿/*Colors*/
+html {
+    --cart-background: #CED3DC;
+    --accent-dark: #3D5467;
+}
+
+#root {
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
@@ -8,4 +14,31 @@
 th, td {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.productSelect {
+    background-color: var(--cart-background);
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+.shoppingCart {
+    background-color: var(--cart-background);
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.selectDisplayItem {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: solid;
+    border-width: thin;
+    border-color: var(--accent-dark);
 }

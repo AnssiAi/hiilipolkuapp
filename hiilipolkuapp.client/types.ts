@@ -1,7 +1,12 @@
 export type ProductDto = {
-    ProductId: number,
-    ProductName: string,
-    Brand: string,
+    productId: number,
+    productName: string,
+    brand: string,
+}
+export type ProductDetailDto = {
+    productId: number,
+    productName: string,
+    brand: string,
 }
 
 export type NewProductDto = Omit<ProductDto, "ProductId">

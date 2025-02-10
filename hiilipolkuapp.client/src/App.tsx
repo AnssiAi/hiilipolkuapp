@@ -1,33 +1,47 @@
 import { useEffect, useState } from 'react';
+import ErrorMessage from './components/ErrorMessage';
 import './App.css';
-
+import { ProductDto } from '../types';
+import { getProducts } from './Services/ProductService';
+import ShoppingCartProvider from './context/ShoppingCartContext';
+import ProductSelect from './components/ProductSelect';
+import ShoppingCart from './components/ShoppingCart';
 
 function App() {
-    const [pingResponse, setPingResponse] = useState<string>();
+    const [error, setError] = useState<Error | null>(null)
+    const [products, setProducts] = useState<ProductDto[]>([]);
 
     useEffect(() => {
-        ping();
-    }, []);
+        fetchProducts();
+    }, [])
 
-    const contents = pingResponse === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <div>
-                {pingResponse}
-        </div>;
+    const fetchProducts = async (): Promise<void> => {
+        try {
+            const response: ProductDto[] = await getProducts();
+            console.log(response)
+            setProducts(response);
+
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err)
+            }
+        }
+    }
 
     return (
-        <div>
-            <h1 id="tableLabel">Hiilipolku</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
+        <ShoppingCartProvider>
+            <div>
+                <h1 id="tableLabel">Hiilipolku</h1>
+                <ErrorMessage error={error} setError={setError} />
+                <div className="container">
+                    <ProductSelect products={products} />
+                    <ShoppingCart />
+                </div>
+            </div>
+        </ShoppingCartProvider>
     );
 
-    async function ping() {
-        const response = await fetch('api/health/ping');
-        const data = await response.text()
-        setPingResponse(data);
-    }
+
 }
 
 export default App;

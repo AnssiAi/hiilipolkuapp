@@ -1,12 +1,12 @@
 import { ProductDto } from "../../types";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useUser } from "../context/UserContext";
 
 
 type ProductSelectDisplayProps = {
     product: ProductDto
 }
 function ProductSelectDisplay({ product }: ProductSelectDisplayProps) {
-    const { addToCart } = useShoppingCart();
+    const { addToCart } = useUser();
 
 
     return (

@@ -1,5 +1,5 @@
 import { ProductDetailDto } from "../../types";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useUser } from "../context/UserContext";
 
 
 type ShoppingCartDisplayProps = {
@@ -7,7 +7,7 @@ type ShoppingCartDisplayProps = {
 }
 function ShoppingCartDisplay({ product }: ShoppingCartDisplayProps) {
 
-    const { removeFromCart } = useShoppingCart();
+    const { removeFromCart } = useUser();
 
     return (
         <div className="selectDisplayItem">

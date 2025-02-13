@@ -1,9 +1,9 @@
 import { ProductDetailDto } from "../../types";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useUser } from "../context/UserContext";
 import ShoppingCartDisplay from "./ShoppingCartDisplay";
 
 function ShoppingCart() {
-    const { cartItems } = useShoppingCart();
+    const { cartItems } = useUser();
 
     const content = cartItems && cartItems.length > 0
         ? <ul>{cartItems.map((product: ProductDetailDto) => <ShoppingCartDisplay key={product.productId} product={product} />)}</ul>

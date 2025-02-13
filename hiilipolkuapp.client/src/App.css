@@ -1,25 +1,37 @@
-﻿/*Colors*/
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+/*Colors*/
 html {
+    --text-light: white;
     --cart-background: #CED3DC;
     --accent-dark: #3D5467;
+    background-color: var(--accent-dark);
 }
 
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
-
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
+.infoBar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    color: var(--text-light);
+    background-color: var(--accent-dark);
+    z-index: 50;
 }
 
 .container {
+    position: absolute;
+    padding: 2rem;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    top: 0;
+    pointer-events: none;
+    z-index: 100;
 }
 
 .productSelect {
@@ -41,4 +53,15 @@ th, td {
     border-bottom: solid;
     border-width: thin;
     border-color: var(--accent-dark);
+    pointer-events: auto;
+}
+
+.geoBtn {
+    pointer-events: auto;
+}
+
+.appMap {
+    max-width: 100%;
+    height: 100vh;
+    z-index: 0;
 }

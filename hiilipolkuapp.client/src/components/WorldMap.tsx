@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import Map from "ol/Map";
 import View from "ol/View";
@@ -12,37 +12,50 @@ import Fill from 'ol/style/Fill';
 import Stroke from 'ol/style/Stroke';
 import VectorLayer from 'ol/layer/Vector.js';
 import VectorSource from 'ol/source/Vector.js';
+import { useGeographic } from "ol/proj";
 
-const tileLayer: TileLayer = new TileLayer({
-    source: new OSM(),
-})
 
 function WorldMap() {
 
+    useGeographic();
     const { userPosition } = useUser();
+    const [vector, setVector] = useState<VectorLayer | null>(null)
+    const [userMarker, setUserMarker] = useState<Feature | null>(null)
 
-    const appMap: Map = new Map({
-        target: "map",
-        layers: [tileLayer],
-        view: new View({
-            center: [0, 0],
-            zoom: 2,
-            minZoom: 1,
-            maxZoom: 5,
+    useEffect(() => {
+        const tileLayer: TileLayer = new TileLayer({
+            source: new OSM(),
         })
-    })
-    const marker = new Feature({
-        type: 'geoMarker',
-        geometry: new Point([0, 0]),
-    })
+        const vectorLayer = new VectorLayer({
+            source: new VectorSource({
+                features: []
+            }),
+            style: (feature) => styles[feature.get('type')]
+        })
+        const appMap: Map = new Map({
+            target: "mapDiv",
+            layers: [tileLayer, vectorLayer],
+            view: new View({
+                center: [0, 0],
+                zoom: 2,
+                minZoom: 1,
+                maxZoom: 5,
+            })
+        })
+        setVector(vectorLayer);
 
-    const vectorLayer = new VectorLayer({
-        source: new VectorSource({
-            features: [marker]
-        }),
-        style: (feature) => styles[feature.get('type')]
-    })
-    appMap.addLayer(vectorLayer);
+
+        return () => appMap.setTarget(undefined);
+
+    }, [])
+
+    useEffect(() => {
+        if (userPosition) {
+            const positionArr: number[] = [userPosition.longitude, userPosition.latitude]
+            handleUserMarkerUpdate(positionArr);
+        }
+    }, [userPosition])
+
     const styles = {
         'geoMarker': new Style({
             image: new CircleStyle({
@@ -56,8 +69,23 @@ function WorldMap() {
         })
     }
 
+    const handleUserMarkerUpdate = (positionArr: number[]) => {
+        const marker = new Feature({
+            type: 'geoMarker',
+            geometry: new Point(positionArr),
+        })
+        const newSource = vector?.getSource();
+        if (userMarker) {
+            newSource?.removeFeature(userMarker);
+        }
+        newSource?.addFeature(marker);
+
+        vector?.setSource(newSource);
+        setUserMarker(marker);
+    }
+
     return (
-        <div id="map" className="appMap" />
+        <div id="mapDiv" className="appMap" />
     );
 }
 

@@ -31,7 +31,7 @@ function App() {
 
     return (
         <UserProvider>
-            <div>
+            <div className="baseContainer">
                 <InfoBar />
                 <ErrorMessage error={error} setError={setError} />
                 <div >

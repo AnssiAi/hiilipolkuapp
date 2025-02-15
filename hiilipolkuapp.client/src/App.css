@@ -11,36 +11,43 @@ html {
     background-color: var(--accent-dark);
 }
 
+.baseContainer {
+    width: 100%;
+    height: 100%;
+}
+
 .infoBar {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
-    left: 0;
-    padding: 1rem;
     color: var(--text-light);
     background-color: var(--accent-dark);
     z-index: 50;
+    padding: 1rem;
 }
 
 .container {
-    position: absolute;
-    padding: 2rem;
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
     top: 0;
-    pointer-events: none;
+    width: 100%;
     z-index: 100;
+    pointer-events: none;
 }
 
 .productSelect {
+    margin-top: 4rem;
+    margin-left: 2rem;
     background-color: var(--cart-background);
     justify-content: center;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
 .shoppingCart {
+    margin-top: 4rem;
+    margin-right: 2rem;
     background-color: var(--cart-background);
     justify-content: center;
     padding: 0.5rem;
@@ -61,7 +68,11 @@ html {
 }
 
 .appMap {
-    max-width: 100%;
+    width: 100%;
     height: 100vh;
     z-index: 0;
+}
+
+#testInput {
+    pointer-events: auto;
 }

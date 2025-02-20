@@ -24,16 +24,16 @@ namespace hiilipolkuapp.Server.Queries
             return dtoProducts;
 
         }
-        public async Task<ProductDto> GetProductById(int id)
+        public async Task<ProductDetailDto> GetProductById(int id)
         {
 
-            var dbProduct = await _databaseContext.ProductTable.FindAsync(id);
+            var dbProduct = await _databaseContext.ProductTable.Include(p => p.Production).FirstOrDefaultAsync(p => p.ProductId == id);
 
             if (dbProduct is null)
             {
                 throw new Exception("Product not found");
             }
-            var dtoProduct = dbProduct.Adapt<ProductDto>();
+            var dtoProduct = dbProduct.Adapt<ProductDetailDto>();
             return dtoProduct;
 
 

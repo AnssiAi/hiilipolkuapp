@@ -11,8 +11,11 @@ function ProductSelectDisplay({ product }: ProductSelectDisplayProps) {
 
     return (
         <div className="selectDisplayItem">
-            <p>{`${product.productName} ${product.brand}`}</p>
-            <button onClick={() => addToCart(product.productId)}>Add To Cart</button>
+            <span>
+                <p>{product.productName}</p>
+                <p>{product.brand}</p>
+            </span>
+            <button className="btn-primary" onClick={() => addToCart(product.productId)}>Add To Cart</button>
         </div>
     );
 }

@@ -11,8 +11,11 @@ function ShoppingCartDisplay({ product }: ShoppingCartDisplayProps) {
 
     return (
         <div className="selectDisplayItem">
-            <p>{`${product.productName} ${product.brand}`}</p>
-            <button onClick={() => removeFromCart(product.productId)}>Remove</button>
+            <span>
+                <p>{product.productName}</p>
+                <p>{product.brand}</p>
+            </span>
+            <button className="btn-primary" onClick={() => removeFromCart(product.productId)}>Remove</button>
         </div>
     );
 }

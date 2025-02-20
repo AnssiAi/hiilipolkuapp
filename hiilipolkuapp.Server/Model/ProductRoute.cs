@@ -4,7 +4,7 @@ namespace hiilipolkuapp.Server.Classes
 {
     public enum RouteType
     {
-        SHIP, PLANE
+        SHIP, PLANE, TRUCK
     }
     public class ProductRoute
     {

@@ -3,12 +3,16 @@
     margin: 0;
 }
 
-/*Colors*/
+/*Colors, Typecase*/
 html {
+    --app-white: white;
     --text-light: white;
-    --cart-background: #CED3DC;
+    --cart-background: #E9ECF1;
+    --cart-darker: #CED3DC;
     --accent-dark: #3D5467;
+    --action-accept: #44CCFF;
     background-color: var(--accent-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .baseContainer {
@@ -40,32 +44,63 @@ html {
 .productSelect {
     margin-top: 4rem;
     margin-left: 2rem;
-    background-color: var(--cart-background);
+    background-color: var(--app-white);
     justify-content: center;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
 }
+
 .shoppingCart {
+    display: flex;
+    flex-direction: column;
     margin-top: 4rem;
     margin-right: 2rem;
-    background-color: var(--cart-background);
+    background-color: var(--app-white);
     justify-content: center;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
 }
 
 .selectDisplayItem {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
     padding: 1rem;
     margin-bottom: 1rem;
     border-bottom: solid;
     border-width: thin;
     border-color: var(--accent-dark);
     pointer-events: auto;
+    justify-content: space-between;
 }
 
-.geoBtn {
-    pointer-events: auto;
+.btn-primary {
+    color: var(--text-light);
+    background-color: var(--accent-dark);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
 }
+
+    .btn-primary:hover {
+        color: var(--accent-dark);
+        background-color: var(--action-accept);
+    }
+
+.btn-geo {
+    color: var(--text-light);
+    background-color: var(--accent-dark);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    pointer-events: auto;
+    margin-right: 1rem;
+}
+
+    .btn-geo:hover {
+        color: var(--accent-dark);
+        background-color: var(--action-accept);
+    }
 
 .appMap {
     width: 100%;
@@ -73,6 +108,77 @@ html {
     z-index: 0;
 }
 
-#testInput {
+.testInput {
+    display:flex;
+    flex-direction: column;
     pointer-events: auto;
+    gap: 0.5rem;
 }
+
+.testInput input {
+    color: var(--accent-dark);
+    background-color: var(--cart-background);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+    .testInput, input:focus {
+        outline-color: var(--action-accept);
+    }
+.receipt-container {
+    display: flex;
+    flex-direction:column;
+    height: 100%;
+}
+.receipt-display {
+    display: flex;
+    flex-direction:column;
+    align-content: space-between;
+    gap: 3rem;
+    height: 100%;
+}
+
+.receipt-item-display {
+    display: flex;
+    flex-direction: row;
+    border-bottom: dashed thin;
+    border-color: var(--accent-dark);
+    padding: 0.2rem;
+    justify-content: space-between;
+}
+.receipt-total-display {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    border-bottom: dashed thin;
+    border-color: var(--accent-dark);
+    padding: 0.2rem;
+    justify-content: space-between;
+}
+
+.popUp {
+    position: absolute;
+    color: var(--accent-dark);
+    background-color: var(--app-white);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    bottom: 15px;
+    left: -20px;
+}
+
+    .popUp:after {
+        content: '';
+        bottom: 0;
+        left: 10%;
+        width: 0;
+        height: 0;
+        border: 15px solid transparent;
+        border-top-color: var(--app-white);
+        border-bottom: 0;
+        border-left: 0;
+        margin-left: -15px;
+        margin-bottom: -15px;
+        position: absolute;
+        pointer-events: none;
+    }

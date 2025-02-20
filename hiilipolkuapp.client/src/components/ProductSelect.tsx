@@ -23,11 +23,6 @@ function ProductSelect({ products }: ProductSelectProps) {
                 setPosition(newPosition);
             })
         }
-        //if ("geolocation" in navigator) {
-        //    navigator.geolocation.getCurrentPosition((position) => {
-        //        addPosition(position.coords.latitude, position.coords.longitude);
-        //    })
-        //}
     }
     const handleSetLocation = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -51,11 +46,11 @@ function ProductSelect({ products }: ProductSelectProps) {
             {
                 products && products.length > 0
                     ? (<>
-                        <button className="geoBtn" onClick={handleGetLocation}>Your Location</button>
-                        <button className="geoBtn" onClick={handleSetLocation}>Set Marker</button>
-                        <form id="testInput">
-                            <input type="number" name="latitude" required value={position.latitude} onChange={handlePositionChange} />
-                            <input type="number" name="longitude" required value={position.longitude} onChange={handlePositionChange} />
+                        <form className="testInput" role="form" >
+                        <button className="btn-geo" onClick={handleGetLocation} role="button" aria-label="get your location" tabIndex={1}>Your Location</button>
+                        <button className="btn-geo" onClick={handleSetLocation} role="button" aria-label="set your location marker" tabIndex={2}>Set Marker</button>
+                            <input type="number" name="latitude" required value={position.latitude} onChange={handlePositionChange} aria-label="latitude input" tabIndex={3} />
+                            <input type="number" name="longitude" required value={position.longitude} onChange={handlePositionChange} aria-label="latitude input" tabIndex={4} />
                         </form>
                         <ul>{products.map((product: ProductDto) => <ProductSelectDisplay key={product.productId} product={product} />)}</ul>
                     </>)

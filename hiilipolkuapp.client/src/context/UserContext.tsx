@@ -28,7 +28,8 @@ function UserProvider({ children }: UserProviderProps) {
     const addToCart = async (id: number) => {
         try {
             if (!cartItems.find((item) => item.productId === id)) {
-                const detailItem: ProductDetailDto = await getProductById(id);;
+                const detailItem: ProductDetailDto = await getProductById(id);
+                console.log(detailItem);
                 const newCart: ProductDetailDto[] = cartItems.concat(detailItem);
                 setCartItems(newCart);
             }

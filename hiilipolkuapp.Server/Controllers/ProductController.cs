@@ -34,7 +34,7 @@ namespace hiilipolkuapp.Server.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDto>> GetProductById(int id)
+        public async Task<ActionResult<ProductDetailDto>> GetProductById(int id)
         {
             try
             {

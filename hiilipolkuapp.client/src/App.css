@@ -159,6 +159,7 @@ html {
 
 .popUp {
     position: absolute;
+    width: 20rem;
     color: var(--accent-dark);
     background-color: var(--app-white);
     padding: 1rem;

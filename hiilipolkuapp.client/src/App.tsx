@@ -8,6 +8,7 @@ import ProductSelect from './components/ProductSelect';
 import ShoppingCart from './components/ShoppingCart';
 import WorldMap from './components/WorldMap';
 import InfoBar from './components/InfoBar';
+import MapProvider from './context/MapContext';
 
 function App() {
     const [error, setError] = useState<Error | null>(null)
@@ -34,6 +35,7 @@ function App() {
             <div className="baseContainer">
                 <InfoBar />
                 <ErrorMessage error={error} setError={setError} />
+                <MapProvider>
                 <div >
                     <WorldMap />
                     <div className="container">
@@ -41,6 +43,7 @@ function App() {
                         <ShoppingCart />
                     </div>
                 </div>
+                </MapProvider>
             </div>
         </UserProvider>
     );

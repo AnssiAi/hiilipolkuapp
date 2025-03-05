@@ -159,6 +159,7 @@ html {
 
 .popUp {
     position: absolute;
+    z-index: 150;
     width: 20rem;
     color: var(--accent-dark);
     background-color: var(--app-white);

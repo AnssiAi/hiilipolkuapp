@@ -1,4 +1,4 @@
-import { View, Map } from "ol";
+import { View, Map} from "ol";
 import TileLayer from "ol/layer/Tile";
 import VectorLayer from "ol/layer/Vector";
 import { OSM } from "ol/source";
@@ -8,19 +8,23 @@ import Fill from "ol/style/Fill";
 import Stroke from "ol/style/Stroke";
 import Style from "ol/style/Style";
 
+const appRed = '#EE4266';
+const appBlue = '#5995ED';
+const appHighlight = '#FFFFFF';
+
 const styles = {
     'route': new Style({
         stroke: new Stroke({
             width: 3,
-            color: 'red',
+            color: appRed,
         }),
     }),
     'userMarker': new Style({
         image: new CircleStyle({
             radius: 7,
-            fill: new Fill({ color: 'black' }),
+            fill: new Fill({ color: appBlue }),
             stroke: new Stroke({
-                color: 'white',
+                color: appHighlight,
                 width: 2,
             })
         })
@@ -28,9 +32,9 @@ const styles = {
     'productionMarker': new Style({
         image: new CircleStyle({
             radius: 7,
-            fill: new Fill({ color: 'red' }),
+            fill: new Fill({ color: appRed }),
             stroke: new Stroke({
-                color: 'white',
+                color: appHighlight,
                 width: 2,
             })
         })

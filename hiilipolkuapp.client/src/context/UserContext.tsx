@@ -29,7 +29,6 @@ function UserProvider({ children }: UserProviderProps) {
         try {
             if (!cartItems.find((item) => item.productId === id)) {
                 const detailItem: ProductDetailDto = await getProductById(id);
-                console.log(detailItem);
                 const newCart: ProductDetailDto[] = cartItems.concat(detailItem);
                 setCartItems(newCart);
             }

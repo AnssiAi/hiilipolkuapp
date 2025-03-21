@@ -11,15 +11,14 @@ import Style from "ol/style/Style";
 const appRed = '#EE4266';
 const appBlue = '#5995ED';
 const appHighlight = '#FFFFFF';
-
-const styles = {
-    'route': new Style({
+const styles: { [key: string]: Style} = {
+    route: new Style({
         stroke: new Stroke({
             width: 3,
             color: appRed,
         }),
     }),
-    'userMarker': new Style({
+    userMarker: new Style({
         image: new CircleStyle({
             radius: 7,
             fill: new Fill({ color: appBlue }),
@@ -29,7 +28,7 @@ const styles = {
             })
         })
     }),
-    'productionMarker': new Style({
+    productionMarker: new Style({
         image: new CircleStyle({
             radius: 7,
             fill: new Fill({ color: appRed }),
@@ -48,7 +47,7 @@ export const appVectorLayer = new VectorLayer({
     source: new VectorSource({
         features: []
     }),
-    style: (feature) => styles[feature.get('type')]
+    style: (feature): Style => styles[feature.get('type')]
 })
 export const appMap: Map = new Map({
     target: "mapDiv",

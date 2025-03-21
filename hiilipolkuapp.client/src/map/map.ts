@@ -8,14 +8,14 @@ import Fill from "ol/style/Fill";
 import Stroke from "ol/style/Stroke";
 import Style from "ol/style/Style";
 
-const styles = {
-    'route': new Style({
+const styles: { [key: string]: Style} = {
+    route: new Style({
         stroke: new Stroke({
             width: 3,
             color: 'red',
         }),
     }),
-    'userMarker': new Style({
+    userMarker: new Style({
         image: new CircleStyle({
             radius: 7,
             fill: new Fill({ color: 'black' }),
@@ -25,7 +25,7 @@ const styles = {
             })
         })
     }),
-    'productionMarker': new Style({
+    productionMarker: new Style({
         image: new CircleStyle({
             radius: 7,
             fill: new Fill({ color: 'red' }),
@@ -44,7 +44,7 @@ export const appVectorLayer = new VectorLayer({
     source: new VectorSource({
         features: []
     }),
-    style: (feature) => styles[feature.get('type')]
+    style: (feature): Style => styles[feature.get('type')]
 })
 export const appMap: Map = new Map({
     target: "mapDiv",

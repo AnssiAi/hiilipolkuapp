@@ -11,6 +11,7 @@ import Style from "ol/style/Style";
 const appRed = '#EE4266';
 const appBlue = '#5995ED';
 const appHighlight = '#FFFFFF';
+
 const styles: { [key: string]: Style} = {
     route: new Style({
         stroke: new Stroke({

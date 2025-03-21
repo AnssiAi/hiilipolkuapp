@@ -8,15 +8,19 @@ import Fill from "ol/style/Fill";
 import Stroke from "ol/style/Stroke";
 import Style from "ol/style/Style";
 
-const appRed = '#EE4266';
+//Colors
 const appBlue = '#5995ED';
 const appHighlight = '#FFFFFF';
+const appCoHigh = '#EE4266';
+const appCoMed = '#ECA72C';
+const appCoLow = appBlue;
+
 
 const styles: { [key: string]: Style} = {
     route: new Style({
         stroke: new Stroke({
             width: 3,
-            color: appRed,
+            color: appCoLow,
         }),
     }),
     userMarker: new Style({
@@ -29,10 +33,30 @@ const styles: { [key: string]: Style} = {
             })
         })
     }),
-    productionMarker: new Style({
+    productionHigh: new Style({
         image: new CircleStyle({
             radius: 7,
-            fill: new Fill({ color: appRed }),
+            fill: new Fill({ color: appCoHigh }),
+            stroke: new Stroke({
+                color: appHighlight,
+                width: 2,
+            })
+        })
+    }),
+    productionMed: new Style({
+        image: new CircleStyle({
+            radius: 7,
+            fill: new Fill({ color: appCoMed }),
+            stroke: new Stroke({
+                color: appHighlight,
+                width: 2,
+            })
+        })
+    }),
+    productionLow: new Style({
+        image: new CircleStyle({
+            radius: 7,
+            fill: new Fill({ color: appCoLow }),
             stroke: new Stroke({
                 color: appHighlight,
                 width: 2,

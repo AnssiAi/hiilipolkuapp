@@ -7,10 +7,12 @@ type ErrorMessageProps = {
 function ErrorMessage({ error, setError }: ErrorMessageProps) {
 
     useEffect(() => {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             setError(null)
         }, 7000)
-    })
+
+        return () => clearTimeout(timer);
+    }, [error])
 
     const content = error
         ? <p>{error.message}</p>

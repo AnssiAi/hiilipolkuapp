@@ -5,8 +5,10 @@
 
 /*Colors, Typecase*/
 html {
-    --app-white: white;
-    --text-light: white;
+    --app-red: #EE4266;
+    --app-blue: #5995ED; 
+    --app-white: #FFFFFF;
+    --text-light: #FFFFFF;
     --cart-background: #E9ECF1;
     --cart-darker: #CED3DC;
     --accent-dark: #3D5467;
@@ -124,7 +126,7 @@ html {
 }
 
     .testInput, input:focus {
-        outline-color: var(--action-accept);
+        outline-color: var(--app-blue);
     }
 .receipt-container {
     display: flex;

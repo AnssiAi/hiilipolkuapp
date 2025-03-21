@@ -93,7 +93,7 @@ function WorldMap() {
         if (cartItems) {
             cartItems.forEach((item: ProductDetailDto) => {
                 const positionArr = [item.production.longitude, item.production.latitude]
-                const marker: Feature<Point> = drawProductionMarker(item.productId, positionArr);
+                const marker: Feature<Point> = drawProductionMarker(item.productId, item.production.coG, positionArr);
                 vectorSource.addFeature(marker);
                 newMarkers = newMarkers.concat(marker);
             })
@@ -121,29 +121,38 @@ function WorldMap() {
     }
 
     const drawUserMarker = (positionArr: number[]): Feature<Point> => {
-        const marker = new Feature({
+        return new Feature({
             type: 'userMarker',
             geometry: new Point(positionArr),
             id: 0,
         })
-        return marker
     }
 
-    const drawProductionMarker = (id: number, positionArr: number[]): Feature<Point> => {
-        const marker = new Feature({
-            type: 'productionMarker',
+    const drawProductionMarker = (id: number, cog: number, positionArr: number[]): Feature<Point> => {
+        return new Feature({
+            type: getProductionType(cog),
             geometry: new Point(positionArr),
             id: id,
         })
-        return marker
+    }
+
+    const getProductionType = (cog: number): string => {
+        let result = 'productionLow';
+
+        if (cog >= 1000 && cog < 5000) {
+            result = 'productionMed';
+        }
+        if (cog >= 5000) {
+            result = 'productionHigh'
+        }
+        return result;
     }
 
     const drawRoute = (startCoordinates: Coordinate, endCoordinates: Coordinate): Feature<LineString> => {
-        const line = new Feature({
+        return new Feature({
             type: 'route',
             geometry: new LineString([startCoordinates, endCoordinates])
         })
-        return line;
     }
 
 

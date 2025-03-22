@@ -39,6 +39,9 @@ x64/
 *.vssscc
 .builds
 
+# Publish
+Properties
+
 # Dependencies
 node_modules
 packages
@@ -52,10 +55,12 @@ TestResults/
 
 # Publish web output
 *Publish.xml
+wwwroot
 
 # Editor directories and files
 appsettings.json
 appsettings.Development.json
+appsettings.Production.json
 
 .config
 .vs/*

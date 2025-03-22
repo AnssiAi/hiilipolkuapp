@@ -13,14 +13,12 @@ namespace hiilipolkuapp.Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //Palveluiden lis‰‰minen
-
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AppDatabaseContext>(options =>
             {
-                options.UseNpgsql(builder.Configuration.GetConnectionString("LocalDatabaseConnection"));
+                options.UseNpgsql(builder.Configuration.GetConnectionString("DatabaseConnection"));
             });
             builder.Services.AddScoped<IProductService, ProductService>();
 
@@ -36,6 +34,7 @@ namespace hiilipolkuapp.Server
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles(); // call before auth
 
             app.UseAuthorization();
 

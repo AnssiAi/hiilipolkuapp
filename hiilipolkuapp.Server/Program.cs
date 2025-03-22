@@ -18,7 +18,7 @@ namespace hiilipolkuapp.Server
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AppDatabaseContext>(options =>
             {
-                options.UseNpgsql(builder.Configuration.GetConnectionString("LocalDatabaseConnection"));
+                options.UseNpgsql(builder.Configuration.GetConnectionString("DatabaseConnection"));
             });
             builder.Services.AddScoped<IProductService, ProductService>();
 

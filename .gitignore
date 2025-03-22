@@ -39,6 +39,9 @@ x64/
 *.vssscc
 .builds
 
+# Publish
+Properties
+
 # Dependencies
 node_modules
 packages

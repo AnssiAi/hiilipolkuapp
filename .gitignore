@@ -60,6 +60,7 @@ wwwroot
 # Editor directories and files
 appsettings.json
 appsettings.Development.json
+appsettings.Production.json
 
 .config
 .vs/*

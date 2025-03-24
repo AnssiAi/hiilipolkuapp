@@ -2,8 +2,8 @@
 {
     public class NewProductDto
     {
-        public string ProductName { get; set; }
-        public string Brand { get; set; }
+        public string ProductName { get; set; } = default!;
+        public string Brand { get; set; } = default!;
     }
 
 }

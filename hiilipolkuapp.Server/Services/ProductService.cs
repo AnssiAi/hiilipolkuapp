@@ -15,11 +15,11 @@ namespace hiilipolkuapp.Server.Queries
             _databaseContext = databaseContext;
         }
 
-        public async Task<List<ProductDto>> GetAllProducts()
+        public async Task<IEnumerable<ProductDto>> GetAllProducts()
         {
 
             var dbProducts = await _databaseContext.ProductTable.ToListAsync();
-            var dtoProducts = dbProducts.Select(p => p.Adapt<ProductDto>()).ToList();
+            var dtoProducts = dbProducts.Select(p => p.Adapt<ProductDto>());
 
             return dtoProducts;
 

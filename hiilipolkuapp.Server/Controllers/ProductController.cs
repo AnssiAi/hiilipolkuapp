@@ -2,6 +2,7 @@
 using hiilipolkuapp.Server.Model;
 using hiilipolkuapp.Server.Queries;
 using hiilipolkuapp.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,7 @@ namespace hiilipolkuapp.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ProductDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
         {
             try
             {
@@ -34,7 +35,7 @@ namespace hiilipolkuapp.Server.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDetailDto>> GetProductById(int id)
+        public async Task<ActionResult<ProductDetailDto>> GetProductById([FromRoute] int id)
         {
             try
             {

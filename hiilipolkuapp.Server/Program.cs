@@ -1,9 +1,12 @@
 
 using hiilipolkuapp.Server.Model;
+using hiilipolkuapp.Server.Options;
 using hiilipolkuapp.Server.Queries;
 using hiilipolkuapp.Server.Services;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Threading.RateLimiting;
 
 namespace hiilipolkuapp.Server
 {
@@ -12,10 +15,25 @@ namespace hiilipolkuapp.Server
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.Configure<AppRateLimitOptions>(builder.Configuration.GetSection(AppRateLimitOptions.AppRateLimit));
+
+            var appOptions = new AppRateLimitOptions();
+            builder.Configuration.GetSection(AppRateLimitOptions.AppRateLimit).Bind(appOptions);
+            var fixedPolicy = "fixed";
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddRateLimiter(_ =>
+            {
+                _.AddFixedWindowLimiter(policyName: fixedPolicy, options =>
+                {
+                    options.PermitLimit = appOptions.PermitLimit;
+                    options.Window = TimeSpan.FromMinutes(appOptions.Window);
+                    options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                    options.QueueLimit = appOptions.QueueLimit;
+                });
+            });
             builder.Services.AddDbContext<AppDatabaseContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DatabaseConnection"));
@@ -38,8 +56,9 @@ namespace hiilipolkuapp.Server
 
             app.UseAuthorization();
 
+            app.UseRateLimiter();
 
-            app.MapControllers();
+            app.MapControllers().RequireRateLimiting("fixed");
 
             app.MapFallbackToFile("/index.html");
 

@@ -7,6 +7,7 @@
     <SpaRoot>..\hiilipolkuapp.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
+    <UserSecretsId>4751e08d-358e-4bfe-9c02-ecbf02505968</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

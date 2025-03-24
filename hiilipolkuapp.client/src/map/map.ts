@@ -5,8 +5,10 @@ import { OSM } from "ol/source";
 import VectorSource from "ol/source/Vector";
 import CircleStyle from "ol/style/Circle";
 import Fill from "ol/style/Fill";
+import Icon from "ol/style/Icon";
 import Stroke from "ol/style/Stroke";
 import Style from "ol/style/Style";
+import markerIcon from "../assets/marker.svg";
 
 //Colors
 const appBlue = '#5995ED';
@@ -24,13 +26,13 @@ const styles: { [key: string]: Style} = {
         }),
     }),
     userMarker: new Style({
-        image: new CircleStyle({
-            radius: 7,
-            fill: new Fill({ color: appBlue }),
-            stroke: new Stroke({
-                color: appHighlight,
-                width: 2,
-            })
+        image: new Icon({
+            opacity: 1,
+            src: markerIcon,
+            scale: 0.4,
+            anchor: [0.5, 0.95],
+            anchorXUnits: "fraction",
+            anchorYUnits: "fraction"
         })
     }),
     productionHigh: new Style({

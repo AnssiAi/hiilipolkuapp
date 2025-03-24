@@ -29,7 +29,7 @@ namespace hiilipolkuapp.Server
                 _.AddFixedWindowLimiter(policyName: fixedPolicy, options =>
                 {
                     options.PermitLimit = appOptions.PermitLimit;
-                    options.Window = TimeSpan.FromMinutes(appOptions.Window);
+                    options.Window = TimeSpan.FromSeconds(appOptions.Window);
                     options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
                     options.QueueLimit = appOptions.QueueLimit;
                 });

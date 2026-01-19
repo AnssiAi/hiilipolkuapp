@@ -15,10 +15,9 @@ namespace hiilipolkuapp.Server.Queries
             _databaseContext = databaseContext;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAllProducts()
+        public async Task<IEnumerable<ProductDto>> GetProducts(string query = "")
         {
-
-            var dbProducts = await _databaseContext.ProductTable.ToListAsync();
+            var dbProducts = await _databaseContext.ProductTable.Where(p => (p.ProductName.ToLower().Contains(query.ToLower()))).ToListAsync();
             var dtoProducts = dbProducts.Select(p => p.Adapt<ProductDto>());
 
             return dtoProducts;

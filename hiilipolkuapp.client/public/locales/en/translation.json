@@ -1,0 +1,16 @@
+{
+  "cart": "Cart",
+  "product": "Products",
+  "language.select": "Language",
+  "location.set": "Your location",
+  "cart.remove": "Remove",
+  "add.toCart": "Add to cart",
+  "cart.noproducts": "Cart is empty...",
+  "cart.coview": "Carbon print",
+  "cart.totalco": "Total Co2 in cart",
+  "cart.tocart": "Cart",
+  "cart.toreceipt": "Carbon print",
+  "search": "Search",
+  "client.location": "You are here",
+  "production.type": "Production type"
+}

@@ -1,58 +1,27 @@
-import { useState } from "react";
-import { ProductDto, UserPosition } from "../../types"
+import { useEffect  } from "react";
+import { ProductDto } from "../../types"
 import { useUser } from "../context/UserContext";
 import ProductSelectDisplay from "./ProductSelectDisplay";
+import ProductSearch from "./ProductSearch";
+import LocationFinder from "./LocationFinder";
 
 
-type ProductSelectProps = {
-    products: ProductDto[];
-}
-function ProductSelect({ products }: ProductSelectProps) {
-    const [position, setPosition] = useState<UserPosition>({ latitude: 0, longitude: 0 })
+function ProductSelect() {
 
-    const { addPosition } = useUser();
+    const { products, fetchProducts } = useUser();
 
-    const handleGetLocation = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const newPosition = {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                }
-                setPosition(newPosition);
-            })
-        }
-    }
-    const handleSetLocation = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        if (position) {
-            addPosition(position.latitude, position.longitude);
-        }
-    }
-    const handlePositionChange = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        if (e.target instanceof HTMLInputElement) {
-            const newPosition = {
-                ...position,
-                [e.target.name]: e.target.value
-            }
-            setPosition(newPosition);
-        }
+    useEffect(() => {
+        fetchProducts();
+    }, [])
 
-    }
     return (
-        <div className="productSelect">
-            <form className="testInput" role="form" >
-                <button className="btn-geo" onClick={handleGetLocation} role="button" aria-label="get your location" tabIndex={1}>Your Location</button>
-                <button className="btn-geo" onClick={handleSetLocation} role="button" aria-label="set your location marker" tabIndex={2}>Set Marker</button>
-                <input type="number" name="latitude" required value={position.latitude} onChange={handlePositionChange} aria-label="latitude input" tabIndex={3} min={-90} max={90} />
-                <input type="number" name="longitude" required value={position.longitude} onChange={handlePositionChange} aria-label="latitude input" tabIndex={4} min={-180} max={180} />
-            </form>
+        <div className="collapsibleContent">
+            <LocationFinder />
+            <ProductSearch/>
             {
                 products && products.length > 0
                     ? (<>
-                        <ul>{products.map((product: ProductDto) => <ProductSelectDisplay key={product.productId} product={product} />)}</ul>
+                        <div>{products.map((product: ProductDto) => <ProductSelectDisplay key={product.productId} product={product} />)}</div>
                     </>)
                     : (<><p>Loading...</p></>)
             }

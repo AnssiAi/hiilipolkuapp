@@ -22,3 +22,9 @@ export const getProductById = async (id: number): Promise<ProductDetailDto> => {
     const data: ProductDetailDto = await response.json();
     return productDetailDTOParser(data);
 }
+
+export const queryProducts = async (query: string): Promise<ProductDto[]> => {
+    const response = await fetch(`${baseUrl}?search=${query}`);
+    const data: ProductDto[] = await response.json();
+    return productListParser(data);
+}

@@ -6,61 +6,97 @@
 /*Colors, Typecase*/
 html {
     --app-red: #EE4266;
-    --app-blue: #5995ED; 
+    --app-blue: #5995ED;
     --app-white: #FFFFFF;
+    --app-warning: #FFFF00;
     --text-light: #FFFFFF;
     --cart-background: #E9ECF1;
     --cart-darker: #CED3DC;
     --accent-dark: #3D5467;
     --action-accept: #44CCFF;
-    background-color: var(--accent-dark);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .baseContainer {
+    display: grid;
+    grid-template-rows: 5% auto;
     width: 100%;
     height: 100%;
 }
 
-.infoBar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    color: var(--text-light);
-    background-color: var(--accent-dark);
-    z-index: 50;
-    padding: 1rem;
+.mapContainer {
+    grid-row: 2;
 }
 
-.container {
+.infoBar {
+    grid-row: 1;
+    display: flex;
+    color: var(--text-light);
+    background-color: var(--accent-dark);
+    padding: 0 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.errorDisplay {
+    grid-row: 1;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    background-color: var(--app-warning);
+    padding: 0.5rem 2rem;
+    border-radius: 0.2rem;
+}
+
+.languageSelect {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+    .languageSelect select {
+        font-size: 1.2em;
+        color: var(--text-light);
+        background-color: transparent;
+        border: none;
+    }
+
+    .languageSelect option {
+        color: var(--accent-dark);
+    }
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding-right: 1rem;
+}
+
+.contentContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 100;
     pointer-events: none;
 }
 
-.productSelect {
-    margin-top: 4rem;
-    margin-left: 2rem;
+.collapsibleContent {
+    display:flex;
+    flex-direction: column;
+    gap: 0.5rem;
     background-color: var(--app-white);
-    justify-content: center;
     padding: 0.5rem;
     border-radius: 0.2rem;
+    min-width: 300px;
+    position: absolute;
+    margin-top: 50px;
 }
 
-.shoppingCart {
+.openCart {
     display: flex;
-    flex-direction: column;
-    margin-top: 4rem;
-    margin-right: 2rem;
-    background-color: var(--app-white);
-    justify-content: center;
-    padding: 0.5rem;
-    border-radius: 0.2rem;
 }
 
 .selectDisplayItem {
@@ -68,12 +104,83 @@ html {
     flex-direction: row;
     gap: 1.5rem;
     padding: 1rem;
-    margin-bottom: 1rem;
     border-bottom: solid;
     border-width: thin;
     border-color: var(--accent-dark);
     pointer-events: auto;
     justify-content: space-between;
+}
+
+.collapsibleItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    pointer-events: auto;
+    margin-top: 4rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.itemCounter {
+    background-color: var(--app-red);
+    color: var(--app-white);
+    border-radius: 50%;
+    min-height: 25px;
+    min-width: 25px;
+    justify-items: center;
+    align-content: center;
+    position: absolute;
+    margin-left: 85px;
+    margin-top: 10px;
+}
+
+.activeStepDisplay {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+    z-index: 0;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+    .activeStepDisplay::before {
+        content: '';
+        position: absolute;
+        top: 45%;
+        width: 100%;
+        height: 3px;
+        background-color: var(--accent-dark);
+        z-index: -1;
+    }
+
+.step-active {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--action-accept);
+    color: var(--accent-dark);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.step-inactive {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--accent-dark);
+    color: var(--app-white);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+    justify-content: center;
 }
 
 .btn-primary {
@@ -104,10 +211,23 @@ html {
         background-color: var(--action-accept);
     }
 
+.btn-collapse {
+    width: 100px;
+    padding: 0.5rem;
+    color: var(--text-light);
+    background-color: var(--accent-dark);
+    border: none;
+    border-radius: 0.5rem;
+}
+    .btn-collapse:hover {
+        color: var(--accent-dark);
+        background-color: var(--action-accept);
+    }
+
 .appMap {
     width: 100%;
     height: 100vh;
-    z-index: 0;
+    z-index: -1;
 }
 
 .testInput {
@@ -115,6 +235,7 @@ html {
     flex-direction: column;
     pointer-events: auto;
     gap: 0.5rem;
+    width: 100%;
 }
 
 .testInput input {
@@ -128,6 +249,7 @@ html {
     .testInput, input:focus {
         outline-color: var(--app-blue);
     }
+
 .receipt-container {
     display: flex;
     flex-direction:column;
@@ -149,6 +271,7 @@ html {
     padding: 0.2rem;
     justify-content: space-between;
 }
+
 .receipt-total-display {
     margin-top: auto;
     display: flex;
@@ -161,7 +284,6 @@ html {
 
 .popUp {
     position: absolute;
-    z-index: 150;
     width: 20rem;
     color: var(--accent-dark);
     background-color: var(--app-white);

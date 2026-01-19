@@ -5,7 +5,7 @@ namespace hiilipolkuapp.Server.Services
 {
     public interface IProductService
     {
-        Task<IEnumerable<ProductDto>> GetAllProducts();
+        Task<IEnumerable<ProductDto>> GetProducts(string query = "");
         Task<ProductDetailDto> GetProductById(int id);
         Task<ProductDto> AddProduct(NewProductDto product);
         Task DeleteProductById(int id);

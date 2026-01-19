@@ -20,11 +20,11 @@ namespace hiilipolkuapp.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts([FromQuery] string search="")
         {
             try
             {
-                var products = await _productService.GetAllProducts();
+                var products = await _productService.GetProducts(search);
                 return Ok(products);
 
             }

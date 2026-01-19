@@ -1,0 +1,16 @@
+{
+  "cart": "Ostoskori",
+  "product": "Tuotteet",
+  "language.select": "Kieli",
+  "location.set": "Sijaintisi",
+  "cart.remove": "Poista",
+  "add.toCart": "Lisää koriin",
+  "cart.coview": "Hiilijälki",
+  "cart.noproducts": "Ostoskori on tyhjä...",
+  "cart.totalco": "Co2 kokonaismäärä",
+  "cart.tocart": "Ostoskori",
+  "cart.toreceipt": "Hiilijälki",
+  "search": "Hae",
+  "client.location": "Olet tässä",
+  "production.type": "Tuotantotyyppi"
+}

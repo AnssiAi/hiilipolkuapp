@@ -1,15 +1,13 @@
 import { useEffect } from "react";
+import { useUser } from "../context/UserContext";
 
-type ErrorMessageProps = {
-    error: Error | null,
-    setError: React.Dispatch<React.SetStateAction<Error | null>>
-}
-function ErrorMessage({ error, setError }: ErrorMessageProps) {
+function ErrorMessage() {
+    const { error, setError } = useUser();
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setError(null)
-        }, 7000)
+        }, 10000)
 
         return () => clearTimeout(timer);
     }, [error])
@@ -19,9 +17,16 @@ function ErrorMessage({ error, setError }: ErrorMessageProps) {
         : null
 
     return (
-        <div className="errorDisplay">
-            {content}
-        </div>
+        <>
+            {
+                error ? (
+                    <div className = "errorDisplay" >
+                        {content}
+                    </div>
+                ) 
+                : (null)
+            }
+        </>
     );
 }
 
